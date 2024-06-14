@@ -116,6 +116,6 @@ for category in all_category:
   get_articles_in_category(category)
 
 #export final_article array into json format
-with open('articles.json', 'w') as f:
-  json.dump(final_article, f, indent = 4)
+with open('articles.json', 'w', encoding='utf-8') as f:
+  json.dump(final_article, f, indent = 4, ensure_ascii='False')
 

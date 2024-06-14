@@ -46,7 +46,7 @@ def get_article_data(article_url):
   full_article_url = f"{base_url}{article_url}"
   article_soup = get_soup(full_article_url)
 
-  title_tag = soup.title.string
+  title_tag = article_soup.find('title').text
   final_article['title'] = title_tag
 
   summary_tag = article_soup.find('meta', attrs={'name':'description'}).get('content', ' ')
@@ -107,6 +107,6 @@ for category in all_category:
   get_articles_in_category(category)
 
 #export final_article array into json format
-with open('articles.json', 'w') as f:
-  json.dump(all_info, f, indent = 4)
+with open('articles.json', 'w', encoding='utf-8') as f:
+  json.dump(all_info, f, indent = 4, ensure_ascii=False)
 
